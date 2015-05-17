@@ -1,3 +1,7 @@
+
+> codemirror-anywhere@1.0.0 build /Users/petitviolet/Code/js/codemirror-anywhere
+> browserify -t brfs lib/codemirror-anywhere.user.js
+
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (Buffer){
 // LICENSE : MIT
@@ -69,7 +73,6 @@ function boot(textarea) {
     };
     var extraKeys = {
         "Cmd-E": restoreTextArea,
-        "Ctrl-E": restoreTextArea,
         "Cmd-Enter": function (cm) {
             var textarea = cm.getTextArea();
             var keyEvent = new KeyboardEvent("keydown", {
@@ -96,6 +99,7 @@ function boot(textarea) {
 }
 
 module.exports = boot;
+
 }).call(this,require("buffer").Buffer)
 },{"buffer":2,"codemirror":8,"codemirror/addon/edit/continuelist.js":6,"codemirror/addon/mode/overlay.js":7,"codemirror/mode/clike/clike.js":9,"codemirror/mode/css/css.js":10,"codemirror/mode/gfm/gfm.js":11,"codemirror/mode/htmlmixed/htmlmixed.js":12,"codemirror/mode/javascript/javascript.js":13,"codemirror/mode/markdown/markdown.js":14,"codemirror/mode/meta.js":15,"codemirror/mode/xml/xml.js":16,"insert-css":17,"structured-source":18}],2:[function(require,module,exports){
 /*!
@@ -14411,7 +14415,7 @@ exports.binarySearch = binarySearch;
 
 var textAreaList = Array.from(document.getElementsByTagName("textarea"));
 function textAreaHandler(event) {
-    var isMetaKey = event.metaKey || event.ctrlKey;
+    var isMetaKey = event.metaKey;
     if (isMetaKey && event.key === "e") {
         require("./boot-codemirror")(event.target);
     }
